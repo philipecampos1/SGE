@@ -15,7 +15,7 @@ This Django project include Frontend, backend and API RESTful, with this allow u
 Clone repository 
 
 ```bash
-  git clone
+  git clone https://github.com/philipecampos1/SGE.git
   cd my-project
 ```
 

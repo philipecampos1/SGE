@@ -5,10 +5,15 @@
 {% endblock %}
 
 {% block content%}
+  {% if perms.products.view_product and perms.inflows.view_inflows %}
     {% include 'components/_product_metrics.html' %}
+  {% endif %}
+  {% if perms.outflows.view_outflow %}
     {% include 'components/_sales_metrics.html' %}
+  {% endif %}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    {% if perms.outflows.view_outflow %}
     <div class="row mt-4 justify-content-center">
         
         <div class="col-md-6 text-center">
@@ -22,6 +27,10 @@
         </div>
 
     </div>
+
+    {% endif %}
+
+    {% if perms.products.view_product %}
     <div class="row mt-4 justify-content-center">
         
         <div class="col-md-6 text-center">
@@ -40,6 +49,7 @@
             </div>
         </div>
     </div>
+    {% endif %}
 
     <script>
         document.addEventListener("DOMContentLoaded", function (){

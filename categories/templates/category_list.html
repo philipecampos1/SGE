@@ -17,11 +17,13 @@ SMS - category
             </div>
         </form>
     </div>
+    {% if perms.categories.add_category %}
     <div class="col-md-6">
         <a href="{% url 'category_create' %}" class="btn btn-success float-end">
             <i class="bi bi-plus"></i> New category
         </a>
     </div>
+    {% endif %}
 </div>
 
 <div class="table-responsive">
@@ -40,15 +42,25 @@ SMS - category
                 <td>{{ category.id }}</td>
                 <td>{{ category.name }}</td>
                 <td>{{ category.description }}</td>
-                <td> <a href="{% url 'category_detail' category.id %}" class="btn btn-info btn-sml">
+                <td>
+                {% if perms.categories.view_category %}
+
+                <a href="{% url 'category_detail' category.id %}" class="btn btn-info btn-sml">
                     <i class="bi bi-eye"></i>
                 </a>
+                {% endif %}
+                {% if perms.categories.change_category %}
+
                 <a href="{% url 'category_update' category.id %}" class="btn btn-warning btn-sml">
                     <i class="bi bi-pencil"></i>
                 </a>
+                {% endif %}
+
+                {% if perms.categories.delete_category %}
                 <a href="{% url 'category_delete' category.id %}" class="btn btn-danger btn-sml">
                     <i class="bi bi-trash"></i>
                 </a>
+                {% endif %}
             </td>
             </tr>
             {% endfor %}

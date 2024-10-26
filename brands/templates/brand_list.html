@@ -17,11 +17,13 @@ SMS - Brands
             </div>
         </form>
     </div>
-    <div class="col-md-6">
-        <a href="{% url 'brand_create' %}" class="btn btn-success float-end">
-            <i class="bi bi-plus"></i> New brand
-        </a>
-    </div>
+    {% if perms.brands.add_brands %}
+        <div class="col-md-6">
+            <a href="{% url 'brand_create' %}" class="btn btn-success float-end">
+                <i class="bi bi-plus"></i> New brand
+            </a>
+        </div>
+    {% endif %}
 </div>
 
 <div class="table-responsive">
@@ -40,16 +42,27 @@ SMS - Brands
                 <td>{{ brand.id }}</td>
                 <td>{{ brand.name }}</td>
                 <td>{{ brand.description }}</td>
-                <td> <a href="{% url 'brand_detail' brand.id %}" class="btn btn-info btn-sml">
-                    <i class="bi bi-eye"></i>
-                </a>
-                <a href="{% url 'brand_update' brand.id %}" class="btn btn-warning btn-sml">
-                    <i class="bi bi-pencil"></i>
-                </a>
-                <a href="{% url 'brand_delete' brand.id %}" class="btn btn-danger btn-sml">
-                    <i class="bi bi-trash"></i>
-                </a>
-            </td>
+
+                <td>
+                    {% if perms.brands.view_brands %}
+                    <a href="{% url 'brand_detail' brand.id %}" class="btn btn-info btn-sml">
+                        <i class="bi bi-eye"></i>
+                    </a>
+                    {% endif %}
+
+                    {% if perms.brands.change_brands %}    
+                    <a href="{% url 'brand_update' brand.id %}" class="btn btn-warning btn-sml">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                    {% endif %}
+                    
+                    {% if perms.brands.delete_brands %}
+                    <a href="{% url 'brand_delete' brand.id %}" class="btn btn-danger btn-sml">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                    {% endif %}
+                    
+                </td>
             </tr>
             {% endfor %}
         </tbody>

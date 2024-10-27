@@ -16,7 +16,7 @@ Clone repository
 
 ```bash
   git clone https://github.com/philipecampos1/SGE.git
-  cd my-project
+  cd SGE
 ```
 
 Create a virtual env

@@ -30,7 +30,7 @@ Activate virtual env
 ```
 Install requirements make sure the virtual envioroment is activate
 ```bash
-  pip install requirements.txt
+  pip install -r requirements.txt
 ```
 
 ##  Config database
